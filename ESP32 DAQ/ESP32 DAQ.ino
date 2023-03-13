@@ -2,6 +2,7 @@
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
+#include "BluetoothSerial.h"
 
 // HX711 circuit wiring and loadcell variables
 const int LOADCELL1_DOUT_PIN = 13;
@@ -87,7 +88,10 @@ float EMGAvg;
 int EMGSampleDelay = 5;
 int EMGSamples = 10;
 
+//------------------------------------------------------------------------------------------//
 
+//Bluetooth initializations
+BluetoothSerial SerialBT;
 
 void setup() {
   // Setup for the loadcells
@@ -123,6 +127,7 @@ void setup() {
   //Setup for EMG
 
   //Setup for bluetooth communication
+  SerialBT.begin("ESP32test"); //Bluetooth device name
 }
 
 void loop() {
@@ -166,8 +171,8 @@ void loop() {
   loadcellAvg3 = loadcellTotal3/loadcellSamples;
   loadcellAvg4 = loadcellTotal4/loadcellSamples;
 
-  Serial.print("Loadcell weight: ");
-  Serial.println(loadcellAvg1);
+  //Serial.print("Loadcell weight: ");
+  //Serial.println(loadcellAvg1);
 
   //BNO055 DAQ
   totalProx = 0;
@@ -225,6 +230,14 @@ void loop() {
 
   EMGAvg = EMGTotal/EMGSamples;
 
-  Serial.print("EMG Value: ");
-  Serial.println(EMGAvg);
+  //Serial.print("EMG Value: ");
+  //Serial.println(EMGAvg);
+
+  //Transmit over bluetooth
+  SerialBT.write((int)loadcellAvg1); //Cast as integer to comply with the limitations of the write function
+  SerialBT.write((int)loadcellAvg2);
+  SerialBT.write((int)loadcellAvg3);
+  SerialBT.write((int)loadcellAvg4);
+  SerialBT.write((int)kneeExtensionAngle);
+  SerialBT.write((int)EMGAvg);
 }
