@@ -127,7 +127,7 @@ void setup() {
   //Setup for EMG
 
   //Setup for bluetooth communication
-  SerialBT.begin("ESP32test"); //Bluetooth device name
+  SerialBT.begin("ESP32Group23"); //Bluetooth device name
 }
 
 void loop() {
@@ -207,8 +207,8 @@ void loop() {
     kneeExtensionAngle = abs(kneeExtensionAngle - 360);
   }
 
-  Serial.print("Knee extension angle: ");
-  Serial.println(180 - kneeExtensionAngle);
+  //Serial.print("Knee extension angle: ");
+  //Serial.println(180 - kneeExtensionAngle);
   //Serial.println("°");
 
   //Serial.print("BNO 1: ");
@@ -234,10 +234,22 @@ void loop() {
   //Serial.println(EMGAvg);
 
   //Transmit over bluetooth
-  SerialBT.write((int)loadcellAvg1); //Cast as integer to comply with the limitations of the write function
-  SerialBT.write((int)loadcellAvg2);
-  SerialBT.write((int)loadcellAvg3);
-  SerialBT.write((int)loadcellAvg4);
-  SerialBT.write((int)kneeExtensionAngle);
-  SerialBT.write((int)EMGAvg);
+  if (SerialBT.available())
+  {
+    //Implements a call and response model - if the esp32 is written to it will respond with the acquired sensor data
+    SerialBT.write((int)loadcellAvg1); //Cast as integer to comply with the limitations of the write function
+    SerialBT.write((int)loadcellAvg2);
+    SerialBT.write((int)loadcellAvg3);
+    SerialBT.write((int)loadcellAvg4);
+    SerialBT.write((int)kneeExtensionAngle);
+    SerialBT.write((int)EMGAvg);
+
+    //Following lines of code were used for testing purposes
+    //Serial.println(SerialBT.read());
+    //Serial.print("Loadcell: ");
+    //Serial.println((int)loadcellAvg1);
+    //Serial.print("BNO angle: ");
+    //Serial.println((int)kneeExtensionAngle);
+  }
+  
 }
