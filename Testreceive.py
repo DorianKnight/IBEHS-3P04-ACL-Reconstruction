@@ -35,4 +35,4 @@ while(1):
     
     #If you do run this code faster than 150 ms, the sock.recv() function will wait until there's new data to be received which is only put onto the socket every 150 ms so in fact we're hard limited to a max sampling rate of once every 150 ms.
     #This rate could be improved but only by altering the arduino code - talk to Dorian Knight if this is an issue
-    time.sleep(1) #Sleep for 1 second
+    time.sleep(0.150) #Sleep for 1 second

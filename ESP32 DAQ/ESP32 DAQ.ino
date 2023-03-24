@@ -44,7 +44,7 @@ float loadcellAvg3;
 float loadcellAvg4;
 
 int loadcellSamples = 10; //Number of samples used to get average
-int loadcellSampleDelay = 5; //10 ms
+int loadcellSampleDelay = 5; //5 ms
 
 //------------------------------------------------------------------------------------------//
 
@@ -157,6 +157,25 @@ void loop() {
       loadcellVal4 = loadcell4.get_units(1);
     }
 
+
+    //Correct for the overflow
+    if (loadcellVal1 < 0)
+    {
+      loadcellVal1 = abs (loadcellVal1);
+    }
+    if (loadcellVal2 < 0)
+    {
+      loadcellVal2 = abs (loadcellVal2);
+    }
+    if (loadcellVal3 < 0)
+    {
+      loadcellVal3 = abs (loadcellVal3);
+    }
+    if (loadcellVal4 < 0)
+    {
+      loadcellVal4 = abs (loadcellVal4);
+    }
+
     loadcellTotal1 += loadcellVal1;
     loadcellTotal2 += loadcellVal2;
     loadcellTotal3 += loadcellVal3;
@@ -246,8 +265,8 @@ void loop() {
 
     //Following lines of code were used for testing purposes
     //Serial.println(SerialBT.read());
-    //Serial.print("Loadcell: ");
-    //Serial.println((int)loadcellAvg1);
+    Serial.print("Loadcell: ");
+    Serial.println((int)loadcellAvg1);
     //Serial.print("BNO angle: ");
     //Serial.println((int)kneeExtensionAngle);
   }
