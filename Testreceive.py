@@ -50,7 +50,7 @@ posterior_CofMs = []
 
 calibration_value = 0
 
-# checking if the knee has approached full extension/ i.e if the inndividual is done one instance of the SEBT test
+# checking if the knee has approached full extension/ i.e if the individual is done one instance of the SEBT test
 
 
 def is_knee_extended(angle):
@@ -59,14 +59,17 @@ def is_knee_extended(angle):
     return False
 
 
+started = False
+
+# first stage of SEBT test (anterior)
 while (1):
 
-    # Call the get data function - it will return an array containing the load cell values and separately it will return the knee angle and the EMG raw signal
+    # Call the get data function - it will return an array containing the load cell values and knee angle
     loadcells, bno, emg = bluetoothCommObject.getData()
 
-    print(loadcells)
-    print(bno)
-    print(emg)
+    print("Raw Loadcell Values" + str(loadcells))
+    # print(emg)
+    print("Knee angle: " + str(bno))
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
     XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
@@ -76,11 +79,235 @@ while (1):
     YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
              loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
 
+    # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
 
-    # You must repeatidly call the getData() method to get new data, it won't run in the background and automatically refresh your values
-    # You ran call the getData() function at a maximum rate of 1 call every 150 ms
+    # adding data to arrays for later plotting
+    anterior_SEBT.append(bno)
+    anterior_CofMs.append((XCofM, YCofM))
 
-    # If you do run this code faster than 150 ms, the sock.recv() function will wait until there's new data to be received which is only put onto the socket every 150 ms so in fact we're hard limited to a max sampling rate of once every 150 ms.
-    # This rate could be improved but only by altering the arduino code - talk to Dorian Knight if this is an issue
     time.sleep(1)  # Sleep for 1 second
+
+    if is_knee_extended(bno) and started == True:
+        print("SEBT test in the anterior direction finished. Moving on to anteromedial direction. ")
+        break
+
+
+# second stage of SEBT test (anteromedial)
+while (1):
+
+    # Call the get data function - it will return an array containing the load cell values and knee angle
+    loadcells, bno, emg = bluetoothCommObject.getData()
+
+    print("Raw Loadcell Values" + str(loadcells))
+    # print(emg)
+    print("Knee angle: " + str(bno))
+
+    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
+    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
+             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+
+    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
+    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
+             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+
+    # printing x and y values of center of mass for debugging purposes
+    print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
+
+    # adding data to arrays for later plotting
+    anteromedial_SEBT.append(bno)
+    anteromedial_CofMs.append((XCofM, YCofM))
+
+    time.sleep(1)  # Sleep for 1 second
+
+    if is_knee_extended(bno):
+        print("SEBT test in the anteromedial direction finished. Moving on to anterolateral direction. ")
+        break
+
+
+# third stage of SEBT test (anterolateral)
+while (1):
+
+    # Call the get data function - it will return an array containing the load cell values and knee angle
+    loadcells, bno, emg = bluetoothCommObject.getData()
+
+    print("Raw Loadcell Values" + str(loadcells))
+    # print(emg)
+    print("Knee angle: " + str(bno))
+
+    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
+    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
+             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+
+    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
+    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
+             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+
+    # printing x and y values of center of mass for debugging purposes
+    print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
+
+    # adding data to arrays for later plotting
+    anterolateral_SEBT.append(bno)
+    anterolateral_CofMs.append((XCofM, YCofM))
+
+    time.sleep(1)  # Sleep for 1 second
+
+    if is_knee_extended(bno):
+        print("SEBT test in the anterolateral direction finished. Moving on to lateral direction. ")
+        break
+
+# fourth stage of SEBT test (lateral)
+while (1):
+
+    # Call the get data function - it will return an array containing the load cell values and knee angle
+    loadcells, bno, emg = bluetoothCommObject.getData()
+
+    print("Raw Loadcell Values" + str(loadcells))
+    # print(emg)
+    print("Knee angle: " + str(bno))
+
+    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
+    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
+             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+
+    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
+    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
+             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+
+    # printing x and y values of center of mass for debugging purposes
+    print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
+
+    # adding data to arrays for later plotting
+    lateral_SEBT.append(bno)
+    lateral_CofMs.append((XCofM, YCofM))
+
+    time.sleep(1)  # Sleep for 1 second
+
+    if is_knee_extended(bno):
+        print("SEBT test in the lateral direction finished. Moving on to posterolateral direction. ")
+        break
+
+# fifth stage of SEBT test (posterolateral)
+while (1):
+
+    # Call the get data function - it will return an array containing the load cell values and knee angle
+    loadcells, bno, emg = bluetoothCommObject.getData()
+
+    print("Raw Loadcell Values" + str(loadcells))
+    # print(emg)
+    print("Knee angle: " + str(bno))
+
+    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
+    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
+             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+
+    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
+    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
+             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+
+    # printing x and y values of center of mass for debugging purposes
+    print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
+
+    # adding data to arrays for later plotting
+    posterolateral_SEBT.append(bno)
+    posterolateral_CofMs.append((XCofM, YCofM))
+
+    time.sleep(1)  # Sleep for 1 second
+
+    if is_knee_extended(bno):
+        print("SEBT test in the posterolateral direction finished. Moving on to posterior direction. ")
+        break
+
+# sixth stage of SEBT test (posterior)
+while (1):
+
+    # Call the get data function - it will return an array containing the load cell values and knee angle
+    loadcells, bno, emg = bluetoothCommObject.getData()
+
+    print("Raw Loadcell Values" + str(loadcells))
+    # print(emg)
+    print("Knee angle: " + str(bno))
+
+    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
+    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
+             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+
+    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
+    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
+             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+
+    # printing x and y values of center of mass for debugging purposes
+    print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
+
+    # adding data to arrays for later plotting
+    posterior_SEBT.append(bno)
+    posterior_CofMs.append((XCofM, YCofM))
+
+    time.sleep(1)  # Sleep for 1 second
+
+    if is_knee_extended(bno):
+        print("SEBT test in the posterior direction finished. Moving on to posteromedial direction. ")
+        break
+
+
+# seventh stage of SEBT test (posteriomedial)
+while (1):
+
+    # Call the get data function - it will return an array containing the load cell values and knee angle
+    loadcells, bno, emg = bluetoothCommObject.getData()
+
+    print("Raw Loadcell Values" + str(loadcells))
+    # print(emg)
+    print("Knee angle: " + str(bno))
+
+    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
+    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
+             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+
+    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
+    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
+             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+
+    # printing x and y values of center of mass for debugging purposes
+    print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
+
+    # adding data to arrays for later plotting
+    posteromedial_SEBT.append(bno)
+    posteromedial_CofMs.append((XCofM, YCofM))
+
+    time.sleep(1)  # Sleep for 1 second
+
+    if is_knee_extended(bno):
+        print("SEBT test in the posteromedial direction finished. Moving on to medial direction. ")
+        break
+
+# eighth stage of SEBT test (medial)
+while (1):
+
+    # Call the get data function - it will return an array containing the load cell values and knee angle
+    loadcells, bno, emg = bluetoothCommObject.getData()
+
+    print("Raw Loadcell Values" + str(loadcells))
+    # print(emg)
+    print("Knee angle: " + str(bno))
+
+    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
+    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
+             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+
+    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
+    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
+             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+
+    # printing x and y values of center of mass for debugging purposes
+    print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
+
+    # adding data to arrays for later plotting
+    medial_SEBT.append(bno)
+    medial_CofMs.append((XCofM, YCofM))
+
+    time.sleep(1)  # Sleep for 1 second
+
+    if is_knee_extended(bno):
+        print("SEBT test in the medial direction finished. Testing Finished, please remove apparatus. ")
+        break
