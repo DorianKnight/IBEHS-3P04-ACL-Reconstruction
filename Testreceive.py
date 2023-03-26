@@ -318,4 +318,13 @@ while (1):
 
 print("SEBT testing finished. Email sent.")
 
+
 # debugging purposes
+
+    #You must repeatidly call the getData() method to get new data, it won't run in the background and automatically refresh your values
+    #You ran call the getData() function at a maximum rate of 1 call every 150 ms
+    
+    #If you do run this code faster than 150 ms, the sock.recv() function will wait until there's new data to be received which is only put onto the socket every 150 ms so in fact we're hard limited to a max sampling rate of once every 150 ms.
+    #This rate could be improved but only by altering the arduino code - talk to Dorian Knight if this is an issue
+    time.sleep(1) #Sleep for 1 second
+
