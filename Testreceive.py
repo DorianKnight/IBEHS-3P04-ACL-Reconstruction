@@ -14,6 +14,8 @@ Note: you only need to check if the connection was successfully established at t
 import DataReceive  # Name of the file containing the bluetooth serial object
 import time
 import matplotlib.pyplot as plt
+import keyboard
+from processing_funcs import *
 
 # Make the bluetooth object that will establish the connect and send back data
 bluetoothCommObject = DataReceive.bluetoothTelephone()
@@ -51,11 +53,13 @@ posterior_CofMs = []
 
 calibration_value = 0
 
+
 # checking if the knee has approached full extension/ i.e if the individual is done one instance of the SEBT test
 
 
 input('Ready for anterior orientation SEBT test? Press Enter to Continue.')
 # first stage of SEBT test (anterior)
+print('Press spacebar key upon completion of the anterior direction.')
 while (1):
 
     # Call the get data function - it will return an array containing the load cell values and knee angle
@@ -81,6 +85,10 @@ while (1):
     anterior_CofMs.append((XCofM, YCofM))
 
     time.sleep(1)  # Sleep for 1 second
+
+    if keyboard.is_pressed(' '):
+        print("SEBT test in the anterior direction finished. Moving on to anteromedial direction. ")
+        break
 
 
 input('Ready for anteromedial orientation SEBT test? Press Enter to Continue.')
@@ -111,7 +119,7 @@ while (1):
 
     time.sleep(1)  # Sleep for 1 second
 
-    if is_knee_extended(bno):
+    if keyboard.is_pressed(' '):
         print("SEBT test in the anteromedial direction finished. Moving on to anterolateral direction. ")
         break
 
@@ -143,7 +151,7 @@ while (1):
 
     time.sleep(1)  # Sleep for 1 second
 
-    if is_knee_extended(bno):
+    if keyboard.is_pressed(' '):
         print("SEBT test in the anterolateral direction finished. Moving on to lateral direction. ")
         break
 
@@ -175,7 +183,7 @@ while (1):
 
     time.sleep(1)  # Sleep for 1 second
 
-    if is_knee_extended(bno):
+    if keyboard.is_pressed(' '):
         print("SEBT test in the lateral direction finished. Moving on to posterolateral direction. ")
         break
 
@@ -207,7 +215,7 @@ while (1):
 
     time.sleep(1)  # Sleep for 1 second
 
-    if is_knee_extended(bno):
+    if keyboard.is_pressed(' '):
         print("SEBT test in the posterolateral direction finished. Moving on to posterior direction. ")
         break
 
@@ -239,7 +247,7 @@ while (1):
 
     time.sleep(1)  # Sleep for 1 second
 
-    if is_knee_extended(bno):
+    if keyboard.is_pressed(' '):
         print("SEBT test in the posterior direction finished. Moving on to posteromedial direction. ")
         break
 
@@ -272,7 +280,7 @@ while (1):
 
     time.sleep(1)  # Sleep for 1 second
 
-    if is_knee_extended(bno):
+    if keyboard.is_pressed(' '):
         print("SEBT test in the posteromedial direction finished. Moving on to medial direction. ")
         break
 
@@ -304,6 +312,10 @@ while (1):
 
     time.sleep(1)  # Sleep for 1 second
 
-    if is_knee_extended(bno):
+    if keyboard.is_pressed(' '):
         print("SEBT test in the medial direction finished. Testing Finished, please remove apparatus. ")
         break
+
+print("SEBT testing finished. Email sent.")
+
+# debugging purposes
