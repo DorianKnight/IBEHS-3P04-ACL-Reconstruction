@@ -304,6 +304,7 @@ while (1):
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
     YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
              loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
+    
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
