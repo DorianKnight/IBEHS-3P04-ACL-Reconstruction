@@ -13,6 +13,7 @@ Note: you only need to check if the connection was successfully established at t
 
 import DataReceive  # Name of the file containing the bluetooth serial object
 import time
+import matplotlib.pyplot as plt
 
 # Make the bluetooth object that will establish the connect and send back data
 bluetoothCommObject = DataReceive.bluetoothTelephone()
@@ -53,14 +54,7 @@ calibration_value = 0
 # checking if the knee has approached full extension/ i.e if the individual is done one instance of the SEBT test
 
 
-def is_knee_extended(angle):
-    if angle >= calibration_value + 2:
-        return True
-    return False
-
-
-started = False
-
+input('Ready for anterior orientation SEBT test? Press Enter to Continue.')
 # first stage of SEBT test (anterior)
 while (1):
 
@@ -88,11 +82,8 @@ while (1):
 
     time.sleep(1)  # Sleep for 1 second
 
-    if is_knee_extended(bno) and started == True:
-        print("SEBT test in the anterior direction finished. Moving on to anteromedial direction. ")
-        break
 
-
+input('Ready for anteromedial orientation SEBT test? Press Enter to Continue.')
 # second stage of SEBT test (anteromedial)
 while (1):
 
@@ -124,7 +115,7 @@ while (1):
         print("SEBT test in the anteromedial direction finished. Moving on to anterolateral direction. ")
         break
 
-
+input('Ready for anterolateral orientation SEBT test? Press Enter to Continue.')
 # third stage of SEBT test (anterolateral)
 while (1):
 
@@ -156,6 +147,7 @@ while (1):
         print("SEBT test in the anterolateral direction finished. Moving on to lateral direction. ")
         break
 
+input('Ready for lateral orientation SEBT test? Press Enter to Continue.')
 # fourth stage of SEBT test (lateral)
 while (1):
 
@@ -187,6 +179,7 @@ while (1):
         print("SEBT test in the lateral direction finished. Moving on to posterolateral direction. ")
         break
 
+input('Ready for posterolateral orientation SEBT test? Press Enter to Continue.')
 # fifth stage of SEBT test (posterolateral)
 while (1):
 
@@ -218,6 +211,7 @@ while (1):
         print("SEBT test in the posterolateral direction finished. Moving on to posterior direction. ")
         break
 
+input('Ready for posterior orientation SEBT test? Press Enter to Continue.')
 # sixth stage of SEBT test (posterior)
 while (1):
 
@@ -250,6 +244,7 @@ while (1):
         break
 
 
+input('Ready for posteromedial orientation SEBT test? Press Enter to Continue.')
 # seventh stage of SEBT test (posteriomedial)
 while (1):
 
@@ -281,6 +276,7 @@ while (1):
         print("SEBT test in the posteromedial direction finished. Moving on to medial direction. ")
         break
 
+input('Ready for medial orientation SEBT test? Press Enter to Continue.')
 # eighth stage of SEBT test (medial)
 while (1):
 
