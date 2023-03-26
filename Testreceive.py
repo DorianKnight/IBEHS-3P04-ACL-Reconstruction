@@ -10,12 +10,12 @@ This value will tell you if you're connected or not - please build a contingency
 in case connection is not successfully established (whether that is try again or raise some exception
 
 Note: you only need to check if the connection was successfully established at the start as the connection persists as long as the object is alive'''
-print("Got here 1")
-import DataReceive  # Name of the file containing the bluetooth serial object
-import time
-import matplotlib.pyplot as plt
-import keyboard
 from processing_funcs import *
+import keyboard
+import matplotlib.pyplot as plt
+import time
+import DataReceive  # Name of the file containing the bluetooth serial object
+print("Got here 1")
 
 # Make the bluetooth object that will establish the connect and send back data
 
@@ -71,13 +71,8 @@ while (1):
     # print(emg)
     print("Knee angle: " + str(bno))
 
-    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
-             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
-
-    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
-             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
+    # calcluating center of mass value
+    XCofM, YCofM = get_Cof_M(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -104,13 +99,8 @@ while (1):
     # print(emg)
     print("Knee angle: " + str(bno))
 
-    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
-             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
-
-    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
-             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
+    # calcluating center of mass value
+    XCofM, YCofM = get_Cof_M(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -136,13 +126,8 @@ while (1):
     # print(emg)
     print("Knee angle: " + str(bno))
 
-    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
-             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
-
-    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
-             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
+    # calcluating center of mass value
+    XCofM, YCofM = get_Cof_M(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -168,13 +153,8 @@ while (1):
     # print(emg)
     print("Knee angle: " + str(bno))
 
-    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
-             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
-
-    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
-             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
+    # calcluating center of mass value
+    XCofM, YCofM = get_Cof_M(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -200,13 +180,8 @@ while (1):
     # print(emg)
     print("Knee angle: " + str(bno))
 
-    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
-             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
-
-    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
-             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
+    # calcluating center of mass value
+    XCofM, YCofM = get_Cof_M(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -232,14 +207,9 @@ while (1):
     # print(emg)
     print("Knee angle: " + str(bno))
 
-    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
-             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
+    # calcluating center of mass value
+    XCofM, YCofM = get_Cof_M(loadcells)
 
-    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
-             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
-    
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
 
@@ -265,13 +235,8 @@ while (1):
     # print(emg)
     print("Knee angle: " + str(bno))
 
-    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
-             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
-
-    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
-             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
+   # calcluating center of mass value
+    XCofM, YCofM = get_Cof_M(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -297,14 +262,8 @@ while (1):
     # print(emg)
     print("Knee angle: " + str(bno))
 
-    # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
-             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
-
-    # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
-             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
-    
+    # calcluating center of mass value
+    XCofM, YCofM = get_Cof_M(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
