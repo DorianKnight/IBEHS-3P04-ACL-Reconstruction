@@ -17,7 +17,7 @@ const int LOADCELL3_SCK_PIN = 14;
 const int LOADCELL4_DOUT_PIN = 4;
 const int LOADCELL4_SCK_PIN = 0;
 
-const long LOADCELL_DIVIDER = 5000;//5895655;
+const long LOADCELL_DIVIDER = 20000;//5895655;
 
 //Names of the individual loadcells
 HX711 loadcell1;
@@ -64,6 +64,10 @@ float Xdist = 0;
 float totalProx = 0;
 float totalDist = 0;
 
+//Initialize the offset upon reset
+float offsetXProx = 0;
+float offsetXDist = 0;
+
 //Initialize the vector variables to hold the x y and z angles
 imu::Vector<3> eulerProx;
 imu::Vector<3> eulerDist;
@@ -92,6 +96,12 @@ int EMGSamples = 10;
 
 //Bluetooth initializations
 BluetoothSerial SerialBT;
+
+//------------------------------------------------------------------------------------------//
+
+//Reset button GPIO setup
+gpio_num_t button = GPIO_NUM_37; //It's a pull down resistor so reading a value of 0 means it's been pushed
+
 
 void setup() {
   // Setup for the loadcells
@@ -128,9 +138,30 @@ void setup() {
 
   //Setup for bluetooth communication
   SerialBT.begin("ESP32Group23"); //Bluetooth device name
+
+  //Setup GPIO button
+  gpio_set_direction(button, GPIO_MODE_INPUT); //Set up the GPIO as input
 }
 
 void loop() {
+  //Check if the reset button has been pushed - if so, zero all sensors
+  if (gpio_get_level(button) == 0)
+  {
+    //Tare load cells
+    loadcell1.tare();
+    loadcell2.tare();
+    loadcell3.tare();
+    loadcell4.tare();
+
+    //Tare BNO055
+    eulerProx = bnoProx.getVector(Adafruit_BNO055::VECTOR_EULER);
+    eulerDist = bnoDist.getVector(Adafruit_BNO055::VECTOR_EULER);
+    offsetXProx = eulerProx.x();
+    offsetXDist = eulerDist.x();
+
+    Serial.println("Sensors zeroed");
+  }
+
 
   //Loadcell DAQ
   loadcellTotal1 = 0;
@@ -205,8 +236,8 @@ void loop() {
     eulerDist = bnoDist.getVector(Adafruit_BNO055::VECTOR_EULER);
 
     //Obtain the current X angle
-    Xprox = eulerProx.x();
-    Xdist = eulerDist.x();
+    Xprox = eulerProx.x() - offsetXProx;
+    Xdist = eulerDist.x() - offsetXDist;
 
     //Add current angle to total
     totalProx += Xprox;
@@ -227,7 +258,7 @@ void loop() {
   }
 
   //Serial.print("Knee extension angle: ");
-  //Serial.println(180 - kneeExtensionAngle);
+  //Serial.println(kneeExtensionAngle);
   //Serial.println("°");
 
   //Serial.print("BNO 1: ");
@@ -269,6 +300,5 @@ void loop() {
     Serial.println((int)loadcellAvg1);
     //Serial.print("BNO angle: ");
     //Serial.println((int)kneeExtensionAngle);
-  }
-  
+  }  
 }
