@@ -17,4 +17,4 @@ def plot_SEBT_graph(SEBT_data: list[float], stage: str) -> None:
     plt.show()
 
 
-plot_SEBT_graph(sample_data, 'Anterolateral')
+#plot_SEBT_graph(sample_data, 'Anterolateral')

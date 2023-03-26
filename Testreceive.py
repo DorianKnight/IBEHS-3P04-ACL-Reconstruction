@@ -10,7 +10,7 @@ This value will tell you if you're connected or not - please build a contingency
 in case connection is not successfully established (whether that is try again or raise some exception
 
 Note: you only need to check if the connection was successfully established at the start as the connection persists as long as the object is alive'''
-
+print("Got here 1")
 import DataReceive  # Name of the file containing the bluetooth serial object
 import time
 import matplotlib.pyplot as plt
@@ -18,7 +18,9 @@ import keyboard
 from processing_funcs import *
 
 # Make the bluetooth object that will establish the connect and send back data
+
 bluetoothCommObject = DataReceive.bluetoothTelephone()
+print("Got here 2")
 if (bluetoothCommObject.successfullConnect == True):
     print("Connection was successfully established \n")
 else:
@@ -70,12 +72,12 @@ while (1):
     print("Knee angle: " + str(bno))
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
-             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
+             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
 
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
-             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
+             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -103,12 +105,12 @@ while (1):
     print("Knee angle: " + str(bno))
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
-             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
+             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
 
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
-             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
+             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -135,12 +137,12 @@ while (1):
     print("Knee angle: " + str(bno))
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
-             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
+             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
 
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
-             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
+             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -167,12 +169,12 @@ while (1):
     print("Knee angle: " + str(bno))
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
-             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
+             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
 
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
-             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
+             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -199,12 +201,12 @@ while (1):
     print("Knee angle: " + str(bno))
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
-             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
+             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
 
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
-             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
+             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -231,13 +233,13 @@ while (1):
     print("Knee angle: " + str(bno))
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
-             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
+             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
 
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
-             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
-
+    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
+             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
+    
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
 
@@ -264,12 +266,12 @@ while (1):
     print("Knee angle: " + str(bno))
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
-             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
+             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
 
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
-             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
+             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -296,12 +298,12 @@ while (1):
     print("Knee angle: " + str(bno))
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[1]*x1 + loadcells[1]*x2 +
-             loadcells[3]*x3 + loadcells[4]*x4)/sum(loadcells)
+    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
+             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
 
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[1]*y1 + loadcells[1]*y2 +
-             loadcells[3]*y3 + loadcells[4]*y4)/sum(loadcells)
+    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
+             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
 
     # printing x and y values of center of mass for debugging purposes
     print('Center of Mass: (' + str(XCofM) + ',' + str(YCofM)+')')
@@ -320,11 +322,3 @@ print("SEBT testing finished. Email sent.")
 
 
 # debugging purposes
-
-    #You must repeatidly call the getData() method to get new data, it won't run in the background and automatically refresh your values
-    #You ran call the getData() function at a maximum rate of 1 call every 150 ms
-    
-    #If you do run this code faster than 150 ms, the sock.recv() function will wait until there's new data to be received which is only put onto the socket every 150 ms so in fact we're hard limited to a max sampling rate of once every 150 ms.
-    #This rate could be improved but only by altering the arduino code - talk to Dorian Knight if this is an issue
-    time.sleep(1) #Sleep for 1 second
-
