@@ -17,7 +17,7 @@ def plot_SEBT_graph(SEBT_data: list[float], stage: str) -> None:
     plt.show()
 
 
-def get_Cof_M(loadcells):
+def get_Cof_M(loadcells: list[int]) -> None:
     # important constants stated here
     x1, y1 = -4.1, 5.85
     x2, y2 = 4.1, 5.85
@@ -25,16 +25,18 @@ def get_Cof_M(loadcells):
     x4, y4 = 4.1, -5.85
 
     if sum(loadcells) == 0:
-        return 0, 0
+        return int(0), int(0)
 
     # calculating the center of mass value (x value) of the 4 loadcells and returning that value
-    XCofM = (loadcells[0]*x1 + loadcells[1]*x2 +
-             loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells)
+    XCofM = round((loadcells[0]*x1 + loadcells[1]*x2 +
+                   loadcells[2]*x3 + loadcells[3]*x4)/sum(loadcells), 2)
 
     # calculating the center of mass value (y value) of the 4 loadcells and returning that value
-    YCofM = (loadcells[0]*y1 + loadcells[1]*y2 +
-             loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells)
+    YCofM = round((loadcells[0]*y1 + loadcells[1]*y2 +
+                   loadcells[2]*y3 + loadcells[3]*y4)/sum(loadcells), 2)
+
+    # adjusting for sensor drift
+    if (XCofM, YCofM) == (x1, y1) or (XCofM, YCofM) == (x2, y2) or (XCofM, YCofM) == (x3, y3) or (XCofM, YCofM) == (x4, y4):
+        return int(0), int(0)
 
     return XCofM, YCofM
-
-# plot_SEBT_graph(sample_data, 'Anterolateral')
