@@ -81,7 +81,7 @@ while (1):
     anterior_SEBT.append(bno)
     anterior_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the anterior direction finished. Moving on to anteromedial direction. ")
@@ -109,7 +109,7 @@ while (1):
     anteromedial_SEBT.append(bno)
     anteromedial_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the anteromedial direction finished. Moving on to anterolateral direction. ")
@@ -136,7 +136,7 @@ while (1):
     anterolateral_SEBT.append(bno)
     anterolateral_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the anterolateral direction finished. Moving on to lateral direction. ")
@@ -163,7 +163,7 @@ while (1):
     lateral_SEBT.append(bno)
     lateral_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the lateral direction finished. Moving on to posterolateral direction. ")
@@ -190,7 +190,7 @@ while (1):
     posterolateral_SEBT.append(bno)
     posterolateral_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the posterolateral direction finished. Moving on to posterior direction. ")
@@ -217,7 +217,7 @@ while (1):
     posterior_SEBT.append(bno)
     posterior_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the posterior direction finished. Moving on to posteromedial direction. ")
@@ -245,7 +245,7 @@ while (1):
     posteromedial_SEBT.append(bno)
     posteromedial_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the posteromedial direction finished. Moving on to medial direction. ")
@@ -272,7 +272,7 @@ while (1):
     medial_SEBT.append(bno)
     medial_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the medial direction finished. Testing Finished, please remove apparatus. ")
