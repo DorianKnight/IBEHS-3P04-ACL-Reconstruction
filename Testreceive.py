@@ -282,3 +282,29 @@ print("SEBT testing finished. Email sent.")
 
 
 # debugging purposes
+
+SEBT_data = {
+    'anterior': anterior_SEBT,
+    'anterolateral': anterolateral_SEBT,
+    'anteromedial': anteromedial_SEBT,
+    'lateral': lateral_SEBT,
+    'medial': medial_SEBT,
+    'posterolateral': posterolateral_SEBT,
+    'posteromedial': posteromedial_SEBT,
+    'posterior': posteromedial_SEBT
+}
+
+CofM_data = {
+    'anterior': anterior_CofMs,
+    'anterolateral': anterolateral_CofMs,
+    'anteromedial': anteromedial_CofMs,
+    'lateral': lateral_CofMs,
+    'medial': medial_CofMs,
+    'posterolateral': posterolateral_CofMs,
+    'posteromedial': posteromedial_CofMs,
+    'posterior': posteromedial_CofMs
+}
+
+
+for item in SEBT_data:
+    plot_SEBT_graph(SEBT_data[item])
