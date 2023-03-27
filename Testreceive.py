@@ -15,12 +15,10 @@ import keyboard
 import matplotlib.pyplot as plt
 import time
 import DataReceive  # Name of the file containing the bluetooth serial object
-print("Got here 1")
 
 # Make the bluetooth object that will establish the connect and send back data
 
 bluetoothCommObject = DataReceive.bluetoothTelephone()
-print("Got here 2")
 if (bluetoothCommObject.successfullConnect == True):
     print("Connection was successfully established \n")
 else:
