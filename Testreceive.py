@@ -81,7 +81,7 @@ while (1):
     anterior_SEBT.append(bno)
     anterior_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the anterior direction finished. Moving on to anteromedial direction. ")
@@ -109,7 +109,7 @@ while (1):
     anteromedial_SEBT.append(bno)
     anteromedial_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the anteromedial direction finished. Moving on to anterolateral direction. ")
@@ -136,7 +136,7 @@ while (1):
     anterolateral_SEBT.append(bno)
     anterolateral_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the anterolateral direction finished. Moving on to lateral direction. ")
@@ -163,7 +163,7 @@ while (1):
     lateral_SEBT.append(bno)
     lateral_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the lateral direction finished. Moving on to posterolateral direction. ")
@@ -190,7 +190,7 @@ while (1):
     posterolateral_SEBT.append(bno)
     posterolateral_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the posterolateral direction finished. Moving on to posterior direction. ")
@@ -217,7 +217,7 @@ while (1):
     posterior_SEBT.append(bno)
     posterior_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the posterior direction finished. Moving on to posteromedial direction. ")
@@ -245,7 +245,7 @@ while (1):
     posteromedial_SEBT.append(bno)
     posteromedial_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the posteromedial direction finished. Moving on to medial direction. ")
@@ -272,7 +272,7 @@ while (1):
     medial_SEBT.append(bno)
     medial_CofMs.append((XCofM, YCofM))
 
-    time.sleep(1)  # Sleep for 1 second
+    time.sleep(0.150)  # Sleep for 1 second
 
     if keyboard.is_pressed(' '):
         print("SEBT test in the medial direction finished. Testing Finished, please remove apparatus. ")
@@ -284,27 +284,27 @@ print("SEBT testing finished. Email sent.")
 # debugging purposes
 
 SEBT_data = {
-    'anterior': anterior_SEBT,
-    'anterolateral': anterolateral_SEBT,
-    'anteromedial': anteromedial_SEBT,
-    'lateral': lateral_SEBT,
-    'medial': medial_SEBT,
-    'posterolateral': posterolateral_SEBT,
-    'posteromedial': posteromedial_SEBT,
-    'posterior': posteromedial_SEBT
+    'Anterior': anterior_SEBT,
+    'Anterolateral': anterolateral_SEBT,
+    'Anteromedial': anteromedial_SEBT,
+    'Lateral': lateral_SEBT,
+    'Medial': medial_SEBT,
+    'Posterolateral': posterolateral_SEBT,
+    'Posteromedial': posteromedial_SEBT,
+    'Posterior': posteromedial_SEBT
 }
 
 CofM_data = {
-    'anterior': anterior_CofMs,
-    'anterolateral': anterolateral_CofMs,
-    'anteromedial': anteromedial_CofMs,
-    'lateral': lateral_CofMs,
-    'medial': medial_CofMs,
-    'posterolateral': posterolateral_CofMs,
-    'posteromedial': posteromedial_CofMs,
-    'posterior': posteromedial_CofMs
+    'Anterior': anterior_CofMs,
+    'Anterolateral': anterolateral_CofMs,
+    'Anteromedial': anteromedial_CofMs,
+    'Lateral': lateral_CofMs,
+    'Medial': medial_CofMs,
+    'Posterolateral': posterolateral_CofMs,
+    'Posteromedial': posteromedial_CofMs,
+    'Posterior': posteromedial_CofMs
 }
 
 
 for item in SEBT_data:
-    plot_SEBT_graph(SEBT_data[item])
+    plot_SEBT_graph(SEBT_data[item], item)
