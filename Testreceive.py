@@ -308,3 +308,7 @@ CofM_data = {
 
 for item in SEBT_data:
     plot_SEBT_graph(SEBT_data[item], item)
+    print(SEBT_data[item])
+
+for item in CofM_data:
+    print(CofM_data[item])
