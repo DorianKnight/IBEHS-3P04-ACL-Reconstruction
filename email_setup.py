@@ -25,9 +25,11 @@ file_names = ['sebt/Anterolateral_SEBT_KneeAngles.png',
 # Define the email function (dont call it email!)
 
 
-def send_emails(email_list, file_names):
+def send_emails(email_list, file_names, scores):
     # name the email subject
     subject = "ACL Rehab data for Patient Doe, John"
+
+    # add processing for scores
 
     for person in email_list:
 
@@ -38,7 +40,6 @@ def send_emails(email_list, file_names):
         line 3
         etc
         """
-
         # make a MIME object to define parts of the email
         msg = MIMEMultipart()
         msg['From'] = email_from
@@ -83,4 +84,4 @@ def send_emails(email_list, file_names):
 
 
 # Run the function
-send_emails(email_list, file_names)
+send_emails(email_list, file_names, [])

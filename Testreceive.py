@@ -11,6 +11,7 @@ in case connection is not successfully established (whether that is try again or
 
 Note: you only need to check if the connection was successfully established at the start as the connection persists as long as the object is alive'''
 from processing_funcs import *
+from email_setup import *
 import keyboard
 import matplotlib.pyplot as plt
 import time
@@ -24,14 +25,8 @@ if (bluetoothCommObject.successfullConnect == True):
 else:
     print("Connection was not successfully established")
 
-# important constants stated here
-x1, y1 = -4.1, 5.85
-x2, y2 = 4.1, 5.85
-x3, y3 = -4.1, -5.85
-x4, y4 = 4.1, -5.85
 
-
-# arrays for holding angle data from each direction of the SEBT test
+# initializing arrays for holding angle data from each direction of the SEBT test
 anterior_SEBT = []
 anterolateral_SEBT = []
 anteromedial_SEBT = []
