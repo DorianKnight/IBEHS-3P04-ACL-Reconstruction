@@ -17,7 +17,7 @@ def plot_SEBT_graph(SEBT_data: list[float], stage: str) -> None:
     plt.show()
 
 
-def get_Cof_M(loadcells: list[int]) -> None:
+def get_Cof_M(loadcells: list[int]):
     # important constants stated here
     x1, y1 = -4.1, 5.85
     x2, y2 = 4.1, 5.85
