@@ -14,7 +14,12 @@ def plot_SEBT_graph(SEBT_data: list[float], stage: str) -> None:
     plt.xlabel("Time (s)")
     plt.ylabel("Knee Flexion Angle (°)")
     plt.title(stage + " Portion of SEBT Test Knee Angle")
-    plt.show()
+    plt.savefig('sebt/'+stage + '_SEBT_KneeAngles.png', dpi=300)
+    # plt.show()
+    plt.close()
+
+
+plot_SEBT_graph(sample_data, 'Anterolateral')
 
 
 def get_Cof_M(loadcells: list[int]):
