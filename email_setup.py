@@ -101,4 +101,4 @@ def send_emails(email_list, file_names, scores):
 
 
 # Run the function
-send_emails(email_list, file_names, [])
+#send_emails(email_list, file_names, [])

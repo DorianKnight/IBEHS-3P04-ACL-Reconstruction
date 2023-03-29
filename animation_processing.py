@@ -60,5 +60,5 @@ def animate(i):
     ax.set_ylim([-6, 6])
 
 
-animate_foot_CofM_deviations(points, 'Anterolateral')
-print("GIF saved")
+#animate_foot_CofM_deviations(points, 'Anterolateral')
+#print("GIF saved")
