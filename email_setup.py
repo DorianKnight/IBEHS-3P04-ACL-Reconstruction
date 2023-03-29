@@ -19,8 +19,23 @@ email_list = ["nehetea@mcmaster.ca"]
 pswd = 'nylbirmhjajcnciy'
 
 
-file_names = ['sebt/Anterolateral_SEBT_KneeAngles.png',
-              'sebt/simple_animation.gif']
+file_names = ['sebt/Anterolateral_SEBT_KneeAngles.png', 'sebt/Anteromedial_SEBT_KneeAngles.png',
+              'sebt/Anterior_SEBT_KneeAngles.png', 'sebt/Lateral_SEBT_KneeAngles.png', 'sebt/Medial_SEBT_KneeAngles',
+              'sebt/Posterolateral_SEBT_KneeAngles', 'sebt/Posteromedial_SEBT_KneeAngles', 'sebt/Posterior_SEBT_KneeAngles',
+              'CofM_images/Anterolateral_SEBT_CofM.png', 'CofM_images/Anteromedial_SEBT_CofM.png',
+              'CofM_images/Anterior_SEBT_CofM.png', 'CofM_images/Lateral_SEBT_CofM.png',
+              'CofM_images/Medial_SEBT_CofM.png', 'CofM_images/Posterolateral_SEBT_CofM.png',
+              'CofM_images/Posteromedial_SEBT_CofM.png', 'CofM_images/Posterior_SEBT_CofM.png']
+
+anterior_SEBT = []
+anterolateral_SEBT = []
+anteromedial_SEBT = []
+lateral_SEBT = []
+medial_SEBT = []
+posterolateral_SEBT = []
+posteromedial_SEBT = []
+posterior_SEBT = []
+
 
 # Define the email function (dont call it email!)
 
@@ -35,10 +50,8 @@ def send_emails(email_list, file_names, scores):
 
         # Make the body of the email
         body = f"""
-        line 1
-        line 2
-        line 3
-        etc
+        Dear Clinician, 
+        blah blah blah blah
         """
         # make a MIME object to define parts of the email
         msg = MIMEMultipart()
@@ -51,8 +64,12 @@ def send_emails(email_list, file_names, scores):
 
         for filename in file_names:
 
-            # Open the file in python as a binary
-            attachment = open(filename, 'rb')  # r for read and b for binary
+            try:
+                # Open the file in python as a binary
+                # r for read and b for binary
+                attachment = open(filename, 'rb')
+            except FileNotFoundError:
+                continue
 
             # Encode as base 64
             attachment_package = MIMEBase('application', 'octet-stream')

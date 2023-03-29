@@ -25,8 +25,8 @@ points = filter_for_animation(points)
 fig, ax = plt.subplots(1, 1)
 
 
-def animate_foot_CofM_deviations(points: list[tuple]) -> None:
-
+def animate_foot_CofM_deviations(points: list[tuple], stage) -> None:
+    points = filter_for_animation(points)
     global fig, ax
     fig.set_size_inches(5, 5)
     ax.grid()
@@ -43,7 +43,7 @@ def animate_foot_CofM_deviations(points: list[tuple]) -> None:
     plt.close()
 
     # Save the animation as an animated GIF
-    ani.save("simple_animation.gif", dpi=300,
+    ani.save('CofM_images/'+stage + '_SEBT_CofM.png', dpi=300,
              writer=PillowWriter(fps=100))
 
 
@@ -60,5 +60,5 @@ def animate(i):
     ax.set_ylim([-6, 6])
 
 
-animate_foot_CofM_deviations(points)
+animate_foot_CofM_deviations(points, 'Anterolateral')
 print("GIF saved")

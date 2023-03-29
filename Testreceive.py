@@ -11,6 +11,7 @@ in case connection is not successfully established (whether that is try again or
 
 Note: you only need to check if the connection was successfully established at the start as the connection persists as long as the object is alive'''
 from processing_funcs import *
+from animation_processing import *
 from email_setup import *
 import keyboard
 import matplotlib.pyplot as plt
@@ -24,6 +25,9 @@ if (bluetoothCommObject.successfullConnect == True):
     print("Connection was successfully established \n")
 else:
     print("Connection was not successfully established")
+
+
+clinician_email = 'nehetea@mcmaster.ca'
 
 
 # initializing arrays for holding angle data from each direction of the SEBT test
@@ -298,10 +302,23 @@ CofM_data = {
     'Posterior': posteromedial_CofMs
 }
 
+file_names = ['sebt/Anterolateral_SEBT_KneeAngles.png', 'sebt/Anteromedial_SEBT_KneeAngles.png',
+              'sebt/Anterior_SEBT_KneeAngles.png', 'sebt/Lateral_SEBT_KneeAngles.png', 'sebt/Medial_SEBT_KneeAngles',
+              'sebt/Posterolateral_SEBT_KneeAngles', 'sebt/Posteromedial_SEBT_KneeAngles', 'sebt/Posterior_SEBT_KneeAngles',
+              'CofM_images/Anterolateral_SEBT_CofM.png', 'CofM_images/Anteromedial_SEBT_CofM.png',
+              'CofM_images/Anterior_SEBT_CofM.png', 'CofM_images/Lateral_SEBT_CofM.png',
+              'CofM_images/Medial_SEBT_CofM.png', 'CofM_images/Posterolateral_SEBT_CofM.png',
+              'CofM_images/Posteromedial_SEBT_CofM.png', 'CofM_images/Posterior_SEBT_CofM.png']
 
 for item in SEBT_data:
     plot_SEBT_graph(SEBT_data[item], item)
-    print(SEBT_data[item])
+
+# print statements for debugging purposes
+print("graphs saved to folder")
 
 for item in CofM_data:
     print(CofM_data[item])
+    animate_foot_CofM_deviations(CofM_data[item], item)
+
+
+send_emails([clinician_email], file_names, [])
