@@ -1,10 +1,11 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 
-sample_data = [0, 0, 0, 0, 1, 4, 4, 5, 6, 8, 9, 20, 40, 40, 50, 53, 57, 80, 85, 89, 90, 91, 100, 110,
-               115, 120, 130, 135, 141, 145, 147, 120, 100, 80, 70, 71, 40, 30, 20, 14, 15, 13, 10, 6, 2, 1, 0, 0, 0]
+# sample_data = [0, 0, 0, 0, 1, 4, 4, 5, 6, 8, 9, 20, 40, 40, 50, 53, 57, 80, 85, 89, 90, 91, 100, 110,
+#               115, 120, 130, 135, 141, 145, 147, 120, 100, 80, 70, 71, 40, 30, 20, 14, 15, 13, 10, 6, 2, 1, 0, 0, 0]
 
 
 def plot_SEBT_graph(SEBT_data: list[float], stage: str) -> None:
@@ -19,10 +20,7 @@ def plot_SEBT_graph(SEBT_data: list[float], stage: str) -> None:
     plt.close()
 
 
-plot_SEBT_graph(sample_data, 'Anterolateral')
-
-
-def get_Cof_M(loadcells: list[int]):
+def get_Cof_M(loadcells: list[int]) -> None:
     # important constants stated here
     x1, y1 = -4.1, 5.85
     x2, y2 = 4.1, 5.85
@@ -45,3 +43,29 @@ def get_Cof_M(loadcells: list[int]):
         return int(0), int(0)
 
     return XCofM, YCofM
+
+
+def get_CofM_deviations(CofM_data: list[tuple]) -> None:
+    x_values = []
+    y_values = []
+    for point in CofM_data:
+        x_values.append(point[0])
+        y_values.append(point[1])
+
+    maxXdiff = max(x_values) - min(x_values)
+    maxYdiff = min(y_values) - min(y_values)
+
+    if maxXdiff > 0.20 or maxYdiff > 0.20:
+        stability_score = 'low'
+    elif (maxXdiff < 0.20 and maxXdiff > 0.10) or (maxYdiff < 0.2 and maxYdiff > 0.10):
+        stability_score = 'medium'
+    elif maxXdiff < 0.10 or maxYdiff < 0.10:
+        stability_score = 'high'
+    else:
+        stability_score = 'undefined'
+
+    return (maxXdiff, maxYdiff, stability_score)
+
+
+def get_min_knee_angle(knee_angle_values: list[float]):
+    return min(knee_angle_values)

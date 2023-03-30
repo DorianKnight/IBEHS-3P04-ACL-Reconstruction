@@ -27,20 +27,11 @@ file_names = ['sebt/Anterolateral_SEBT_KneeAngles.png', 'sebt/Anteromedial_SEBT_
               'CofM_images/Medial_SEBT_CofM.png', 'CofM_images/Posterolateral_SEBT_CofM.png',
               'CofM_images/Posteromedial_SEBT_CofM.png', 'CofM_images/Posterior_SEBT_CofM.png']
 
-anterior_SEBT = []
-anterolateral_SEBT = []
-anteromedial_SEBT = []
-lateral_SEBT = []
-medial_SEBT = []
-posterolateral_SEBT = []
-posteromedial_SEBT = []
-posterior_SEBT = []
-
 
 # Define the email function (dont call it email!)
 
 
-def send_emails(email_list, file_names, scores):
+def send_emails(email_list, file_names, SEBT_data, CofM_data):
     # name the email subject
     subject = "ACL Rehab data for Patient Doe, John"
 
@@ -50,8 +41,8 @@ def send_emails(email_list, file_names, scores):
 
         # Make the body of the email
         body = f"""
-        Dear Clinician, 
-        blah blah blah blah
+        Dear Clinician, {SEBT_data} \t
+        {CofM_data}
         """
         # make a MIME object to define parts of the email
         msg = MIMEMultipart()
@@ -101,4 +92,4 @@ def send_emails(email_list, file_names, scores):
 
 
 # Run the function
-#send_emails(email_list, file_names, [])
+# send_emails(email_list, file_names, [])

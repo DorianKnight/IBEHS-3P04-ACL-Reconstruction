@@ -292,14 +292,14 @@ SEBT_data = {
 }
 
 CofM_data = {
-    'Anterior': anterior_CofMs,
-    'Anterolateral': anterolateral_CofMs,
-    'Anteromedial': anteromedial_CofMs,
-    'Lateral': lateral_CofMs,
-    'Medial': medial_CofMs,
-    'Posterolateral': posterolateral_CofMs,
-    'Posteromedial': posteromedial_CofMs,
-    'Posterior': posteromedial_CofMs
+    'Anterior': [anterior_CofMs, get_CofM_deviations(anterior_CofMs)],
+    'Anterolateral': [anterolateral_CofMs, get_CofM_deviations(anterolateral_CofMs)],
+    'Anteromedial': [anteromedial_CofMs, get_CofM_deviations(anteromedial_CofMs)],
+    'Lateral': [lateral_CofMs, get_CofM_deviations(lateral_CofMs)],
+    'Medial': [medial_CofMs, get_CofM_deviations(medial_CofMs)],
+    'Posterolateral': [posterolateral_CofMs, get_CofM_deviations(posterolateral_CofMs)],
+    'Posteromedial': [posteromedial_CofMs, get_CofM_deviations(posteromedial_CofMs)],
+    'Posterior': [posterior_CofMs, get_CofM_deviations(posterior_CofMs)]
 }
 
 file_names = ['sebt/Anterolateral_SEBT_KneeAngles.png', 'sebt/Anteromedial_SEBT_KneeAngles.png',
@@ -310,15 +310,23 @@ file_names = ['sebt/Anterolateral_SEBT_KneeAngles.png', 'sebt/Anteromedial_SEBT_
               'CofM_images/Medial_SEBT_CofM.png', 'CofM_images/Posterolateral_SEBT_CofM.png',
               'CofM_images/Posteromedial_SEBT_CofM.png', 'CofM_images/Posterior_SEBT_CofM.png']
 
+
 for item in SEBT_data:
     plot_SEBT_graph(SEBT_data[item], item)
 
 # print statements for debugging purposes
 print("graphs saved to folder")
 
+# debugging, remove later
+print(SEBT_data)
+
+# debugging, remove later
+print(CofM_data)
+
+
 for item in CofM_data:
     print(CofM_data[item])
-    animate_foot_CofM_deviations(CofM_data[item], item)
+    animate_foot_CofM_deviations(CofM_data[item][0], item)
 
 
-send_emails([clinician_email], file_names, [])
+send_emails([clinician_email], file_names, SEBT_data, CofM_data)
