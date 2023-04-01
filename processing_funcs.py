@@ -94,4 +94,4 @@ def get_CofM_deviations(CofM_data: dict) -> dict:
     return stability_score, std_x_diff, std_y_diff
 
 
-print(get_CofM_deviations(CofM_data))
+# print(get_CofM_deviations(CofM_data))
