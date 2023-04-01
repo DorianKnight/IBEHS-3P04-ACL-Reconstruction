@@ -15,7 +15,7 @@ from os.path import isfile, join
 
 
 # setting clinician email
-clinician_email = 'nehetea@mcmaster.ca'
+clinician_email = 'knighd7@mcmaster.ca' #'nehetea@mcmaster.ca'
 
 # READ THIS COMMENT OR ELSE THERE WILL BE PROBLEMS
 

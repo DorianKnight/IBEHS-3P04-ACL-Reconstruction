@@ -18,7 +18,7 @@ email_list = ["nehetea@mcmaster.ca"]
 
 # Define the password (better to reference externally)
 # As shown in the video this password is now dead, left in as example only
-pswd = 'nylbirmhjajcnciy'
+pswd = 'kwdmwzyihcwmsskj' #'nylbirmhjajcnciy'
 
 
 # Define the email function (dont call it email!)
