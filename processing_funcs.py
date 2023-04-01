@@ -8,18 +8,6 @@ import math
 #               115, 120, 130, 135, 141, 145, 147, 120, 100, 80, 70, 71, 40, 30, 20, 14, 15, 13, 10, 6, 2, 1, 0, 0, 0]
 
 
-def plot_SEBT_graph(SEBT_data: list[float], stage: str) -> None:
-    num = len(SEBT_data)
-    x_values = np.arange(0, num)*0.150+0
-    plt.plot(x_values, SEBT_data)
-    plt.xlabel("Time (s)")
-    plt.ylabel("Knee Flexion Angle (°)")
-    plt.title(stage + " Portion of SEBT Test Knee Angle")
-    plt.savefig('sebt/'+stage + '_SEBT_KneeAngles.png', dpi=300)
-    # plt.show()
-    plt.close()
-
-
 def get_Cof_M(loadcells: list[int]) -> None:
     # important constants stated here
     x1, y1 = -4.1, 5.85
@@ -45,6 +33,17 @@ def get_Cof_M(loadcells: list[int]) -> None:
     return XCofM, YCofM
 
 
+def plot_SEBT_graph(SEBT_data: list[float], stage: str) -> None:
+    num = len(SEBT_data)
+    x_values = np.arange(0, num)*0.150+0
+    plt.plot(x_values, SEBT_data)
+    plt.xlabel("Time (s)")
+    plt.ylabel("Knee Flexion Angle (°)")
+    plt.title(stage + " Leg Portion of SEBT Test Knee Angle")
+    plt.savefig('sebt/'+stage + '_SEBT_KneeAngles.png', dpi=300)
+    plt.close()
+
+
 def get_CofM_deviations(CofM_data: list[tuple]) -> None:
     x_values = []
     y_values = []
@@ -65,7 +64,3 @@ def get_CofM_deviations(CofM_data: list[tuple]) -> None:
         stability_score = 'undefined'
 
     return (maxXdiff, maxYdiff, stability_score)
-
-
-def get_min_knee_angle(knee_angle_values: list[float]):
-    return min(knee_angle_values)

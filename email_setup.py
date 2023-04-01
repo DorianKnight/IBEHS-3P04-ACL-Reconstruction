@@ -4,6 +4,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+import time
 
 # Setup port number and server name
 
@@ -29,6 +30,9 @@ file_names = ['sebt/Anterolateral_SEBT_KneeAngles.png', 'sebt/Anteromedial_SEBT_
 
 
 # Define the email function (dont call it email!)
+
+# format of SEBT data
+# maxXdiff, maxYdiff, stabilty_score
 
 
 def send_emails(email_list, file_names, SEBT_data, CofM_data):
