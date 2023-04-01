@@ -56,6 +56,7 @@ def plot_CofM_deviations(op_leg_data: list[(float, float)], nonop_leg_data: list
     ax1.set_ylabel('CofM Y Coordinate (cm)')
     ax2.set_xlabel('CofM X Coordinate (cm)')
     ax2.set_ylabel('CofM Y Coordinate (cm)')
+    stage = stage.replace(" ", "_")
     fig.savefig(f'CofM_images/{stage}_CofM_Deviations', dpi=300)
 
 
