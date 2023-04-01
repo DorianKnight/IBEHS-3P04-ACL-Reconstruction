@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 import time
+from processing_funcs import *
 
 # Setup port number and server name
 
@@ -20,22 +21,12 @@ email_list = ["nehetea@mcmaster.ca"]
 pswd = 'nylbirmhjajcnciy'
 
 
-file_names = ['sebt/Anterolateral_SEBT_KneeAngles.png', 'sebt/Anteromedial_SEBT_KneeAngles.png',
-              'sebt/Anterior_SEBT_KneeAngles.png', 'sebt/Lateral_SEBT_KneeAngles.png', 'sebt/Medial_SEBT_KneeAngles',
-              'sebt/Posterolateral_SEBT_KneeAngles', 'sebt/Posteromedial_SEBT_KneeAngles', 'sebt/Posterior_SEBT_KneeAngles',
-              'CofM_images/Anterolateral_SEBT_CofM.png', 'CofM_images/Anteromedial_SEBT_CofM.png',
-              'CofM_images/Anterior_SEBT_CofM.png', 'CofM_images/Lateral_SEBT_CofM.png',
-              'CofM_images/Medial_SEBT_CofM.png', 'CofM_images/Posterolateral_SEBT_CofM.png',
-              'CofM_images/Posteromedial_SEBT_CofM.png', 'CofM_images/Posterior_SEBT_CofM.png']
-
-
 # Define the email function (dont call it email!)
-
-# format of SEBT data
-# maxXdiff, maxYdiff, stabilty_score
 
 
 def send_emails(email_list, file_names, SEBT_data, CofM_data):
+    deviations = get_CofM_deviations(CofM_data)
+
     # name the email subject
     subject = "ACL Rehab data for Patient Doe, John"
 
@@ -46,7 +37,7 @@ def send_emails(email_list, file_names, SEBT_data, CofM_data):
         # Make the body of the email
         body = f"""
         Dear Clinician, {SEBT_data} \t
-        {CofM_data}
+        {deviations}
         """
         # make a MIME object to define parts of the email
         msg = MIMEMultipart()

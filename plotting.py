@@ -2,10 +2,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-points = [(2, 3), (3, 2), (2.33, 4.5)]
 
-
-def filter_for_animation(points: list[tuple]):
+def filter_for_calcs(points: list[tuple]):
     new_points = []
     x1, y1 = -4.1, 5.85
     x2, y2 = 4.1, 5.85
@@ -18,8 +16,8 @@ def filter_for_animation(points: list[tuple]):
 
 
 def plot_CofM_deviations(op_leg_data: list[(float, float)], nonop_leg_data: list[(float, float)], stage: str):
-    operative_leg = filter_for_animation(op_leg_data)
-    nonoperative_leg = filter_for_animation(nonop_leg_data)
+    operative_leg = filter_for_calcs(op_leg_data)
+    nonoperative_leg = filter_for_calcs(nonop_leg_data)
 
     fig, (ax1, ax2) = plt.subplots(1, 2)
 
