@@ -10,6 +10,7 @@ import keyboard
 from email_setup import *
 from animation_processing import *
 from processing_funcs import *
+from plotting import *
 from os import listdir
 from os.path import isfile, join
 
@@ -222,52 +223,30 @@ print("SEBT testing for the operative leg finished. Finished testing, please rem
 
 # debugging purposes
 SEBT_data = {
-    'Anterior Non-Operative': anterior_SEBT_nonop,
-    'Anterolateral Non-Operative': anterolateral_SEBT_nonop,
-    'Anteromedial Non-Operative': anteromedial_SEBT_nonop,
-    'Lateral Non-Operative': lateral_SEBT_nonop,
-    'Medial Non-Operative': medial_SEBT_nonop,
-    'Posterolateral Non-Operative': posterolateral_SEBT_nonop,
-    'Posteromedial Non-Operative': posteromedial_SEBT_nonop,
-    'Posterior Non-Operative': posteromedial_SEBT_nonop,
-    'Anterior Operative': anterior_SEBT_op,
-    'Anterolateral Operative': anterolateral_SEBT_op,
-    'Anteromedial Operative': anteromedial_SEBT_op,
-    'Lateral Operative': lateral_SEBT_op,
-    'Medial Operative': medial_SEBT_op,
-    'Posterolateral Operative': posterolateral_SEBT_op,
-    'Posteromedial Operative': posteromedial_SEBT_op,
-    'Posterior Operative': posteromedial_SEBT_op
+    'Anterior Non-Operative': [anterior_SEBT_op, anterior_SEBT_nonop],
+    'Anterolateral Non-Operative': [anterolateral_SEBT_op, anterolateral_SEBT_nonop],
+    'Anteromedial Non-Operative': [anteromedial_SEBT_op, anteromedial_SEBT_nonop],
+    'Lateral Non-Operative': [lateral_SEBT_op, lateral_SEBT_nonop],
+    'Medial Non-Operative': [medial_SEBT_op, medial_SEBT_nonop],
+    'Posterolateral Non-Operative': [posterolateral_SEBT_op, posterolateral_SEBT_nonop],
+    'Posteromedial Non-Operative': [posterolateral_SEBT_op, posterolateral_SEBT_nonop],
+    'Posterior Non-Operative': [posterolateral_SEBT_op, posterolateral_SEBT_nonop]
 }
 
 CofM_data = {
-    'Anterior Non-Operative': anterior_CofMs_nonop,
-    'Anterolateral Non-Operative': anterolateral_CofMs_nonop,
-    'Anteromedial Non-Operative': anteromedial_CofMs_nonop,
-    'Lateral Non-Operative': lateral_CofMs_nonop,
-    'Medial Non-Operative': medial_CofMs_nonop,
-    'Posterolateral Non-Operative': posterolateral_CofMs_nonop,
-    'Posteromedial Non-Operative': posteromedial_CofMs_nonop,
-    'Posterior Non-Operative': posteromedial_CofMs_nonop,
-    'Anterior Operative': anterior_CofMs_op,
-    'Anterolateral Operative': anterolateral_CofMs_op,
-    'Anteromedial Operative': anteromedial_CofMs_op,
-    'Lateral Operative': lateral_CofMs_op,
-    'Medial Operative': medial_CofMs_op,
-    'Posterolateral Operative': posterolateral_CofMs_op,
-    'Posteromedial Operative': posteromedial_CofMs_op,
-    'Posterior Operative': posteromedial_CofMs_op,
+    'Anterior': [anterior_CofMs_op, anterior_CofMs_nonop],
+    'Anterolateral': [anterolateral_CofMs_op, anterolateral_CofMs_nonop],
+    'Anteromedial': [anteromedial_CofMs_op, anteromedial_CofMs_nonop],
+    'Lateral': [lateral_CofMs_op, lateral_CofMs_nonop],
+    'Medial': [medial_CofMs_op, medial_CofMs_nonop],
+    'Posterolateral': [posterolateral_CofMs_op, posterolateral_CofMs_nonop],
+    'Posteromedial': [posteromedial_CofMs_op, posteromedial_CofMs_nonop],
+    'Posterior': [posterior_CofMs_op, posterior_CofMs_nonop]
 }
-
-anglefiles = ['sebt/' + f for f in listdir('sebt') if isfile(join('sebt', f))]
-CofMfiles = ['CofM_images/' +
-             f for f in listdir('CofM_images') if isfile(join('CofM_images', f))]
-
-file_names = anglefiles + CofMfiles
 
 
 for item in SEBT_data:
-    plot_SEBT_graph(SEBT_data[item], item)
+    plot_SEBT_graph(SEBT_data[item][0], SEBT_data[item][1], item)
 print("graphs saved to folder")
 
 # debugging, remove later
@@ -276,10 +255,16 @@ print(SEBT_data)
 # debugging, remove later
 print(CofM_data)
 
-
+# saving CofM images to folder
 for item in CofM_data:
-    print(CofM_data[item])
-    animate_foot_CofM_deviations(CofM_data[item][0], item)
+    plot_CofM_deviations(CofM_data[item][0], CofM_data[item][1], item)
 
+
+# getting filenames to send as attachments
+anglefiles = ['sebt/' + f for f in listdir('sebt') if isfile(join('sebt', f))]
+CofMfiles = ['CofM_images/' +
+             f for f in listdir('CofM_images') if isfile(join('CofM_images', f))]
+
+file_names = anglefiles + CofMfiles
 
 send_emails([clinician_email], file_names, SEBT_data, CofM_data)
