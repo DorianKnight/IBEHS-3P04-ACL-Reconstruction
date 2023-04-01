@@ -8,7 +8,6 @@ import time
 import matplotlib.pyplot as plt
 import keyboard
 from email_setup import *
-from animation_processing import *
 from processing_funcs import *
 from plotting import *
 from os import listdir
