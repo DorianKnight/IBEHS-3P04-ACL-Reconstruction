@@ -22,8 +22,6 @@ pswd = 'nylbirmhjajcnciy'
 
 
 # Define the email function (dont call it email!)
-
-
 def send_emails(email_list, file_names, SEBT_data, CofM_data):
     deviations = get_CofM_deviations(CofM_data)
 

@@ -101,4 +101,4 @@ def plot_SEBT_graph(op_leg_data: list[float], nonop_leg_data: list[float], stage
     fig.savefig('sebt/'+stage+'_SEBT_KneeAngles.png', dpi=300)
 
 
-# plot_SEBT_graph([3, 90, 3], [2, 98, 2], 'Anterior')
+plot_SEBT_graph([3, 90, 3], [2, 98, 2], 'Anterior Non-Operative')
