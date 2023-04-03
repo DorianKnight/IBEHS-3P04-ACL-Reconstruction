@@ -9,7 +9,7 @@ from processing_funcs import *
 
 # Setup port number and server name
 
-smtp_port = 587                 # Standard secure SMTP port
+smtp_port = 587          # Standard secure SMTP port
 smtp_server = "smtp.gmail.com"  # Google SMTP Server
 
 # Set up the email lists
@@ -18,12 +18,13 @@ email_list = ["nehetea@mcmaster.ca"]
 
 # Define the password (better to reference externally)
 # As shown in the video this password is now dead, left in as example only
-pswd = 'nylbirmhjajcnciy'
+pswd = 'ziakhqieazvadhox'
 
 
 # Define the email function (dont call it email!)
 def send_emails(email_list, file_names, SEBT_data, CofM_data):
-    deviations = get_CofM_deviations(CofM_data)
+    # deviations = get_CofM_deviations(CofM_data)
+    stability_score, std_x_diff, std_y_diff = get_CofM_deviations(CofM_data)
 
     # name the email subject
     subject = "ACL Rehab data for Patient Doe, John"
@@ -34,9 +35,10 @@ def send_emails(email_list, file_names, SEBT_data, CofM_data):
 
         # Make the body of the email
         body = f"""
-        Dear Clinician, {SEBT_data} \t
-        {deviations}
-        """
+        Dear Clinician, """
+        # {SEBT_data} \t
+        # {deviations}
+        # """
         # make a MIME object to define parts of the email
         msg = MIMEMultipart()
         msg['From'] = email_from
@@ -85,4 +87,5 @@ def send_emails(email_list, file_names, SEBT_data, CofM_data):
 
 
 # Run the function
-# send_emails(email_list, file_names, [])
+send_emails(
+    email_list, ['sebt/Anterior_Non-Operative_SEBT_KneeAngles.png'], [], [])
