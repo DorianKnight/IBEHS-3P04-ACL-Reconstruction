@@ -86,11 +86,14 @@ def get_CofM_deviations(CofM_data: dict) -> dict:
     avg_y_diff = round(total_y/8, 2)
 
     if avg_x_diff > 1 or avg_y_diff > 1:
-        stability_score = 'Low'
+        stability_score = 'Low 🔴. The balancing of the patient highly differs from the non-operative and operative leg. \
+        Please book appointment with patient soon if necessary.'
     elif (avg_x_diff > 0.3 and avg_x_diff <= 1) or (avg_y_diff > 0.3 and avg_y_diff <= 1):
-        stability_score = 'Medium'
+        stability_score = 'Medium 🟡. The balancing of the patient moderately differs from the non-operative and operative leg.\
+            Clinician intervention may be required.'
     else:
-        stability_score = 'High'
+        stability_score = 'High 🟢. The balancing of the patient does not differ substantially from the non-operative and operative leg. \
+            Recovery on track.'
 
     return stability_score, std_x_diff, std_y_diff
 
@@ -106,11 +109,11 @@ def get_knee_angle_scores(SEBT_data):
     avg_angle_diff = round((total_diffs/8), 2)
 
     if avg_angle_diff > 10:
-        stability_score = 'Low'
+        stability_score = 'Low 🔴. The knee could be highly unstable and there is a severe cause of concern.'
     elif avg_angle_diff > 5 and avg_angle_diff < 10:
-        stability_score = 'Medium'
+        stability_score = 'Medium 🟡. The knee might be minorly unstable and there might be a minor cause of concern.'
     elif avg_angle_diff <= 5:
-        stability_score = 'High'
+        stability_score = 'High 🟢. The knee is likely stable and there is no cause of concern.'
 
     return stability_score, angle_diffs
 
