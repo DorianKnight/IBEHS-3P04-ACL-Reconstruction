@@ -222,14 +222,14 @@ print("SEBT testing for the operative leg finished. Finished testing, please rem
 
 # debugging purposes
 SEBT_data = {
-    'Anterior Non-Operative': [anterior_SEBT_op, anterior_SEBT_nonop],
-    'Anterolateral Non-Operative': [anterolateral_SEBT_op, anterolateral_SEBT_nonop],
-    'Anteromedial Non-Operative': [anteromedial_SEBT_op, anteromedial_SEBT_nonop],
-    'Lateral Non-Operative': [lateral_SEBT_op, lateral_SEBT_nonop],
-    'Medial Non-Operative': [medial_SEBT_op, medial_SEBT_nonop],
-    'Posterolateral Non-Operative': [posterolateral_SEBT_op, posterolateral_SEBT_nonop],
-    'Posteromedial Non-Operative': [posterolateral_SEBT_op, posterolateral_SEBT_nonop],
-    'Posterior Non-Operative': [posterolateral_SEBT_op, posterolateral_SEBT_nonop]
+    'Anterior': [anterior_SEBT_op, anterior_SEBT_nonop],
+    'Anterolateral': [anterolateral_SEBT_op, anterolateral_SEBT_nonop],
+    'Anteromedial': [anteromedial_SEBT_op, anteromedial_SEBT_nonop],
+    'Lateral': [lateral_SEBT_op, lateral_SEBT_nonop],
+    'Medial': [medial_SEBT_op, medial_SEBT_nonop],
+    'Posterolateral': [posterolateral_SEBT_op, posterolateral_SEBT_nonop],
+    'Posteromedial': [posterolateral_SEBT_op, posterolateral_SEBT_nonop],
+    'Posterior': [posterolateral_SEBT_op, posterolateral_SEBT_nonop]
 }
 
 CofM_data = {
