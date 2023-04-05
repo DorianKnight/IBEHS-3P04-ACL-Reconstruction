@@ -18,7 +18,7 @@ email_list = ["nehetea@mcmaster.ca"]
 
 # Define the password (better to reference externally)
 # As shown in the video this password is now dead, left in as example only
-pswd = 'ziakhqieazvadhox'
+pswd = 'uqwlswrdpvgzvoiz'
 
 test_SEBT_data = {
     'Anterior': [[1, 150, 1], [2, 130, 1]],
@@ -108,7 +108,7 @@ def send_emails(email_list, file_names, SEBT_data, CofM_data):
         Knee Angle Differences between Non-Operative and Operative Leg
         {SEBT_angle_diffs}
 
-        Please contact the patie
+        Please contact the patient
          Thank you, 
          ReBalance Canada
          """

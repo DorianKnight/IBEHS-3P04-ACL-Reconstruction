@@ -15,7 +15,7 @@ from os.path import isfile, join
 
 
 # setting clinician email
-clinician_email = 'knighd7@mcmaster.ca' #'nehetea@mcmaster.ca'
+clinician_email = 'knighd7@mcmaster.ca' # 'martim96@mcmaster.ca'#'nehetea@mcmaster.ca'
 
 # READ THIS COMMENT OR ELSE THERE WILL BE PROBLEMS
 
@@ -228,8 +228,8 @@ SEBT_data = {
     'Lateral': [lateral_SEBT_op, lateral_SEBT_nonop],
     'Medial': [medial_SEBT_op, medial_SEBT_nonop],
     'Posterolateral': [posterolateral_SEBT_op, posterolateral_SEBT_nonop],
-    'Posteromedial': [posterolateral_SEBT_op, posterolateral_SEBT_nonop],
-    'Posterior': [posterolateral_SEBT_op, posterolateral_SEBT_nonop]
+    'Posteromedial': [posteromedial_SEBT_op, posteromedial_SEBT_nonop],
+    'Posterior': [posterior_SEBT_op, posterior_SEBT_nonop]
 }
 
 CofM_data = {
@@ -249,10 +249,10 @@ for item in SEBT_data:
 print("graphs saved to folder")
 
 # debugging, remove later
-print(SEBT_data)
+#print(SEBT_data)
 
 # debugging, remove later
-print(CofM_data)
+#print(CofM_data)
 
 # saving CofM images to folder
 for item in CofM_data:

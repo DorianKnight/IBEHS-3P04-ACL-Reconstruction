@@ -282,9 +282,10 @@ void loop() {
 
   //Serial.print("EMG Value: ");
   //Serial.println(EMGAvg);
-
+  //Serial.print("Reading");
+  //Serial.println(SerialBT.read());
   //Transmit over bluetooth
-  if (SerialBT.available())
+  if (SerialBT.read() == 49)
   {
     //Implements a call and response model - if the esp32 is written to it will respond with the acquired sensor data
     SerialBT.write((int)loadcellAvg1); //Cast as integer to comply with the limitations of the write function
@@ -296,9 +297,17 @@ void loop() {
 
     //Following lines of code were used for testing purposes
     //Serial.println(SerialBT.read());
-    Serial.print("Loadcell: ");
-    Serial.println((int)loadcellAvg1);
+    //Serial.print("Loadcell: ");
+    //Serial.println((int)loadcellAvg1);
     //Serial.print("BNO angle: ");
     //Serial.println((int)kneeExtensionAngle);
-  }  
+
+    Serial.println("Sending data to esp32");
+  }
+
+  //Serial.println((int)loadcellAvg1); //Cast as integer to comply with the limitations of the write function
+  //Serial.println((int)loadcellAvg2);
+  //Serial.println((int)loadcellAvg3);
+  //Serial.println((int)loadcellAvg4);
+  //Serial.println((int)kneeExtensionAngle);  
 }
